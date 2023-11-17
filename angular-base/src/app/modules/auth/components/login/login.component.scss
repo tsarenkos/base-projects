@@ -1,0 +1,36 @@
+section {
+    padding-top: 50px;
+}
+
+mat-form-field {
+    padding-left: 20px;
+    width: 340px;
+}
+
+mat-card-title {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+mat-card {
+    border-radius: 10px;
+}
+
+mat-card-actions {
+    padding-bottom: 30px;
+}
+
+mat-card-actions button {
+    width: 320px;
+    height: 50px;
+}
+
+.register-link-block {
+    text-align: center;
+    padding: 15px;
+}
+
+.password-icon {
+    cursor: pointer;
+}

@@ -1,0 +1,47 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="400px" fxFlex.xs="100%">
+        <mat-card-title>Sign up</mat-card-title>
+        <form [formGroup]="form" autocomplete="off" novalidate fxLayout="column wrap" fxLayoutAlign="center center"
+            fxLayoutGap="10px" (ngSubmit)="submit()">
+            <mat-card-content>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="First name" formControlName="firstName" id="firstName">
+                    <mat-error
+                        *ngIf="containsError('firstName', ErrorTitles.required)">{{ErrorMessages.fieldRequired('First name')}}</mat-error>
+                    <mat-icon matSuffix>perm_identity</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Last name" formControlName="lastName" id="lastName">
+                    <mat-error
+                        *ngIf="containsError('lastName', ErrorTitles.required)">{{ErrorMessages.fieldRequired('Last name')}}</mat-error>
+                    <mat-icon matSuffix>perm_identity</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="email" placeholder="Email" formControlName="email" id="email">
+                    <mat-error
+                        *ngIf="containsError('email', ErrorTitles.required)">{{ErrorMessages.fieldRequired('Email')}}</mat-error>
+                    <mat-error
+                        *ngIf="containsError('email', ErrorTitles.emailInvalid)">{{ErrorMessages.emailInvalid}}</mat-error>
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput [type]="isHidden ? 'password' : 'text'" placeholder="Password"
+                        formControlName="password" id="password">
+                    <mat-error
+                        *ngIf="containsError('password', ErrorTitles.required)">{{ErrorMessages.fieldRequired('Password')}}</mat-error>
+                    <mat-error
+                        *ngIf="containsError('password', ErrorTitles.minlength)">{{ErrorMessages.passwordMinlength}}</mat-error>
+                    <mat-icon class="password-icon" matSuffix (click)="isHidden = !isHidden">
+                        {{isHidden ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button [disabled]="form.invalid" color="primary">Continue</button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</section>

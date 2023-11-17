@@ -1,0 +1,34 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="400px" fxFlex.xs="100%">
+        <mat-card-title>Login</mat-card-title>
+
+        <form [formGroup]="form" autocomplete="off" novalidate fxLayout="column wrap" fxLayoutAlign="center center"
+            fxLayoutGap="10px" (ngSubmit)="submit()">
+            <mat-card-content>
+                <mat-form-field>
+                    <input matInput type="email" placeholder="Email" formControlName="email" id="email">
+                    <mat-icon matSuffix>email</mat-icon>
+                    <mat-error *ngIf="containsError('email', ErrorTitles.required)">{{ErrorMessages.fieldRequired('Email')}}</mat-error>
+                    <mat-error *ngIf="containsError('email', ErrorTitles.emailInvalid)">{{ErrorMessages.emailInvalid}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput [type]="isHidden ? 'password' : 'text'" placeholder="Password"
+                        formControlName="password" id="password">
+                    <mat-icon class="password-icon" matSuffix (click)="isHidden = !isHidden">
+                        {{isHidden ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                    <mat-error *ngIf="containsError('password', ErrorTitles.required)">{{ErrorMessages.fieldRequired('Password')}}</mat-error>
+                    <mat-error *ngIf="containsError('password', ErrorTitles.invalidCredentials)">{{ErrorMessages.invalidCredentials}}</mat-error>
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button [disabled]="form.invalid" type="submit" color="primary">Login</button>
+            </mat-card-actions>
+        </form>
+
+        <div class="register-link-block">
+            Don't have an account yet? <a [routerLink]="['/auth/sign-up']">Register now </a>
+        </div>
+    </mat-card>
+</section>
